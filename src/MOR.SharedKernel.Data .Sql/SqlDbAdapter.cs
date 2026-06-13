@@ -43,20 +43,20 @@ namespace System.Data.Sql
             return ret;
         }
 
-        public static SqlConnection CreateConfigDatabaseConnection(string connectionStringConfigName, bool isOpen = true)
-        {
-            var conStr = System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringConfigName].ConnectionString;
+        //public static SqlConnection CreateConfigDatabaseConnection(string connectionStringConfigName, bool isOpen = true)
+        //{
+        //    var conStr = System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringConfigName].ConnectionString;
 
-            var ret = CreateDatabaseConnection(conStr, isOpen);
-            return ret;
-        }
+        //    var ret = CreateDatabaseConnection(conStr, isOpen);
+        //    return ret;
+        //}
 
-        public static Task<SqlConnection> CreateConfigDatabaseConnectionAsync(string connectionStringConfigName, bool isOpen = true)
-        {
-            var conStr = System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringConfigName].ConnectionString;
+        //public static Task<SqlConnection> CreateConfigDatabaseConnectionAsync(string connectionStringConfigName, bool isOpen = true)
+        //{
+        //    var conStr = System.Configuration.ConfigurationManager.ConnectionStrings[connectionStringConfigName].ConnectionString;
 
-            return CreateDatabaseConnectionAsync(conStr, isOpen);
-        }
+        //    return CreateDatabaseConnectionAsync(conStr, isOpen);
+        //}
 
 
         public static DataTable ReadData(string query, SqlConnection con, int? commandTimeout = null)
@@ -65,8 +65,12 @@ namespace System.Data.Sql
             return ret;
         }
 
-        public static DataTable ReadData(string query, SqlConnection con, SqlTransaction transaction,
-            int? commandTimeout = null, IDictionary<string, object> parameters = null)
+        public static DataTable ReadData(
+            string query,
+            SqlConnection con,
+            SqlTransaction? transaction = null,
+            int? commandTimeout = null,
+            IDictionary<string, object>? parameters = null)
         {
             DataTable dt = new DataTable();
 
@@ -91,8 +95,12 @@ namespace System.Data.Sql
             return ReadDataAsync(query, con, null, commandTimeout);
         }
 
-        public async static Task<DataTable> ReadDataAsync(string query, SqlConnection con, SqlTransaction transaction,
-            int? commandTimeout = null, IDictionary<string, object> parameters = null)
+        public async static Task<DataTable> ReadDataAsync(
+            string query,
+            SqlConnection con,
+            SqlTransaction? transaction = null,
+            int? commandTimeout = null,
+            IDictionary<string, object>? parameters = null)
         {
             DataTable dt = new DataTable();
 
@@ -113,16 +121,20 @@ namespace System.Data.Sql
         }
 
 
-        public static object ReadSingleData(string query, SqlConnection con, int? commandTimeout = null)
+        public static object? ReadSingleData(string query, SqlConnection con, int? commandTimeout = null)
         {
             var ret = ReadSingleData(query, con, null, commandTimeout);
             return ret;
         }
 
-        public static object ReadSingleData(string query, SqlConnection con, SqlTransaction transaction,
-            int? commandTimeout = null, IDictionary<string, object> parameters = null)
+        public static object? ReadSingleData(
+            string query,
+            SqlConnection con,
+            SqlTransaction? transaction = null,
+            int? commandTimeout = null,
+            IDictionary<string, object>? parameters = null)
         {
-            object ret = null;
+            var ret = default(object);
 
             using (var sqlCommand = GenerateCommand(query, con, transaction, commandTimeout, parameters))
             {
@@ -146,15 +158,19 @@ namespace System.Data.Sql
             return ret;
         }
 
-        public static Task<object> ReadSingleDataAsync(string query, SqlConnection con, int? commandTimeout = null)
+        public static Task<object?> ReadSingleDataAsync(string query, SqlConnection con, int? commandTimeout = null)
         {
             return ReadSingleDataAsync(query, con, null, commandTimeout);
         }
 
-        public async static Task<object> ReadSingleDataAsync(string query, SqlConnection con, SqlTransaction transaction,
-            int? commandTimeout = null, IDictionary<string, object> parameters = null)
+        public async static Task<object?> ReadSingleDataAsync(
+            string query,
+            SqlConnection con,
+            SqlTransaction? transaction = null,
+            int? commandTimeout = null,
+            IDictionary<string, object>? parameters = null)
         {
-            object ret = null;
+            var ret = default(object);
 
             using (var sqlCommand = GenerateCommand(query, con, transaction, commandTimeout, parameters))
             {
@@ -185,8 +201,13 @@ namespace System.Data.Sql
             return ret;
         }
 
-        public static Stream ReadStream(string query, SqlConnection con, SqlTransaction transaction, int dataColumnIndex = 0,
-            int? commandTimeout = null, IDictionary<string, object> parameters = null)
+        public static Stream ReadStream(
+            string query,
+            SqlConnection con,
+            SqlTransaction? transaction = null,
+            int dataColumnIndex = 0,
+            int? commandTimeout = null,
+            IDictionary<string, object>? parameters = null)
         {
             using (var sqlCommand = GenerateCommand(query, con, transaction, commandTimeout, parameters))
             {
@@ -208,8 +229,13 @@ namespace System.Data.Sql
             return ReadStreamAsync(query, con, null, dataColumnIndex, commandTimeout);
         }
 
-        public async static Task<Stream> ReadStreamAsync(string query, SqlConnection con, SqlTransaction transaction, int dataColumnIndex = 0,
-            int? commandTimeout = null, IDictionary<string, object> parameters = null)
+        public async static Task<Stream> ReadStreamAsync(
+            string query,
+            SqlConnection con,
+            SqlTransaction? transaction = null,
+            int dataColumnIndex = 0,
+            int? commandTimeout = null,
+            IDictionary<string, object>? parameters = null)
         {
             using (var sqlCommand = GenerateCommand(query, con, transaction, commandTimeout, parameters))
             {
@@ -233,8 +259,12 @@ namespace System.Data.Sql
             return ret;
         }
 
-        public static int ExecuteNonQuery(string query, SqlConnection con, SqlTransaction transaction,
-            int? commandTimeout = null, IDictionary<string, object> parameters = null)
+        public static int ExecuteNonQuery(
+            string query,
+            SqlConnection con,
+            SqlTransaction? transaction = null,
+            int? commandTimeout = null,
+            IDictionary<string, object>? parameters = null)
         {
             var ret = int.MinValue;
 
@@ -256,8 +286,12 @@ namespace System.Data.Sql
             return ExecuteNonQueryAsync(query, con, null, commandTimeout);
         }
 
-        public async static Task<int> ExecuteNonQueryAsync(string query, SqlConnection con, SqlTransaction transaction,
-            int? commandTimeout = null, IDictionary<string, object> parameters = null)
+        public async static Task<int> ExecuteNonQueryAsync(
+            string query,
+            SqlConnection con,
+            SqlTransaction? transaction = null,
+            int? commandTimeout = null,
+            IDictionary<string, object>? parameters = null)
         {
             var ret = int.MinValue;
 
@@ -283,11 +317,7 @@ namespace System.Data.Sql
 
             foreach (DataRow dr in dt.Rows)
             {
-                var cci = new DBColumnCollationInfo();
-                cci.TableName = (string)dr["TableName"];
-                cci.ColumnName = (string)dr["ColumnName"];
-                cci.Collation = dr["Collation"] as string;
-
+                var cci = new DBColumnCollationInfo((string)dr["TableName"], (string)dr["ColumnName"], dr["Collation"] as string);
                 ret.Add(cci);
             }
 
@@ -302,7 +332,7 @@ namespace System.Data.Sql
         }
 
 
-        public static SqlCommand GenerateCommand(string query, SqlConnection con, SqlTransaction transaction = null, int? commandTimeout = null, IDictionary<string, object> parameters = null)
+        public static SqlCommand GenerateCommand(string query, SqlConnection con, SqlTransaction? transaction = null, int? commandTimeout = null, IDictionary<string, object>? parameters = null)
         {
             var ret = new SqlCommand(query, con, transaction) { CommandType = CommandType.Text };
 
@@ -311,7 +341,7 @@ namespace System.Data.Sql
                 ret.CommandTimeout = commandTimeout.Value;
             }
 
-            if (parameters.AnyAndNotNull())
+            if (parameters != null && parameters.AnyAndNotNull() == true)
             {
                 foreach (var kvp in parameters)
                 {
@@ -323,7 +353,7 @@ namespace System.Data.Sql
         }
 
 
-        public static string GetString(object value, bool forceConversion = false)
+        public static string? GetString(object value, bool forceConversion = false)
         {
             if (value == null || value == DBNull.Value)
             {

@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
 using System.Data.Common;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace System.Data.Sql
 {
@@ -141,7 +136,7 @@ namespace System.Data.Sql
             }
         }
 
-        public bool TryGetCurrentTransaction(out DbTransaction transaction)
+        public bool TryGetCurrentTransaction(out DbTransaction? transaction)
         {
             transaction = null;
 

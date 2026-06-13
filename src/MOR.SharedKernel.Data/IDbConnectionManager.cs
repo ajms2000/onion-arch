@@ -18,7 +18,7 @@ namespace System.Data
         DbTransaction BeginTransaction();
         Task<DbTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default);
 
-        bool TryGetCurrentTransaction(out DbTransaction transaction);
+        bool TryGetCurrentTransaction(out DbTransaction? transaction);
         bool IsInTransaction();
     }
 }
