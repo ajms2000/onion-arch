@@ -30,14 +30,14 @@ namespace System.Data.Sql
             return ret;
         }
 
-        public async static Task<SqlConnection> CreateDatabaseConnectionAsync(string connectionString, bool isOpen = true)
+        public async static Task<SqlConnection> CreateDatabaseConnectionAsync(string connectionString, bool isOpen = true, CancellationToken cancellationToken = default)
         {
             var cb = new SqlConnectionStringBuilder(connectionString);
             var ret = new SqlConnection(cb.ConnectionString);
 
             if (isOpen)
             {
-                await ret.OpenAsync();
+                await ret.OpenAsync(cancellationToken);
             }
 
             return ret;
@@ -100,7 +100,8 @@ namespace System.Data.Sql
             SqlConnection con,
             SqlTransaction? transaction = null,
             int? commandTimeout = null,
-            IDictionary<string, object>? parameters = null)
+            IDictionary<string, object>? parameters = null,
+            CancellationToken cancellationToken = default)
         {
             DataTable dt = new DataTable();
 
@@ -111,7 +112,7 @@ namespace System.Data.Sql
                     sqlCommand.CommandTimeout = commandTimeout.Value;
                 }
 
-                using (var reader = await sqlCommand.ExecuteReaderAsync())
+                using (var reader = await sqlCommand.ExecuteReaderAsync(cancellationToken))
                 {
                     dt.Load(reader);
                 }
@@ -168,7 +169,8 @@ namespace System.Data.Sql
             SqlConnection con,
             SqlTransaction? transaction = null,
             int? commandTimeout = null,
-            IDictionary<string, object>? parameters = null)
+            IDictionary<string, object>? parameters = null,
+            CancellationToken cancellationToken = default)
         {
             var ret = default(object);
 
@@ -179,7 +181,7 @@ namespace System.Data.Sql
                     sqlCommand.CommandTimeout = commandTimeout.Value;
                 }
 
-                var obj = await sqlCommand.ExecuteScalarAsync();
+                var obj = await sqlCommand.ExecuteScalarAsync(cancellationToken);
 
                 if (obj == DBNull.Value)
                 {
@@ -235,7 +237,8 @@ namespace System.Data.Sql
             SqlTransaction? transaction = null,
             int dataColumnIndex = 0,
             int? commandTimeout = null,
-            IDictionary<string, object>? parameters = null)
+            IDictionary<string, object>? parameters = null,
+            CancellationToken cancellationToken = default)
         {
             using (var sqlCommand = GenerateCommand(query, con, transaction, commandTimeout, parameters))
             {
@@ -244,7 +247,7 @@ namespace System.Data.Sql
                     sqlCommand.CommandTimeout = commandTimeout.Value;
                 }
 
-                using (var reader = await sqlCommand.ExecuteReaderAsync())
+                using (var reader = await sqlCommand.ExecuteReaderAsync(cancellationToken))
                 {
                     var ret = reader.GetStream(dataColumnIndex);
                     return ret;
@@ -291,7 +294,8 @@ namespace System.Data.Sql
             SqlConnection con,
             SqlTransaction? transaction = null,
             int? commandTimeout = null,
-            IDictionary<string, object>? parameters = null)
+            IDictionary<string, object>? parameters = null,
+            CancellationToken cancellationToken = default)
         {
             var ret = int.MinValue;
 
@@ -302,7 +306,7 @@ namespace System.Data.Sql
                     sqlCommand.CommandTimeout = commandTimeout.Value;
                 }
 
-                ret = await sqlCommand.ExecuteNonQueryAsync();
+                ret = await sqlCommand.ExecuteNonQueryAsync(cancellationToken);
             }
 
             return ret;

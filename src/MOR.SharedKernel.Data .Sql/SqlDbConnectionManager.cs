@@ -37,7 +37,7 @@ namespace System.Data.Sql
 
             if (isOpen && canOpen)
             {
-                await con.OpenAsync();
+                await con.OpenAsync(cancellationToken);
             }
 
             return con;
@@ -75,7 +75,7 @@ namespace System.Data.Sql
         {
             if (m_Trans == null)
             {
-                var con = await GetConnectionAsync(true);
+                var con = await GetConnectionAsync(true, cancellationToken);
                 m_Trans = con.BeginTransaction();
 
                 m_IsInTransaction = true;
@@ -119,11 +119,11 @@ namespace System.Data.Sql
                 {
                     if (commit)
                     {
-                        await m_Trans.CommitAsync();
+                        await m_Trans.CommitAsync(cancellationToken);
                     }
                     else
                     {
-                        await m_Trans.RollbackAsync();
+                        await m_Trans.RollbackAsync(cancellationToken);
                     }
                 }
                 finally
