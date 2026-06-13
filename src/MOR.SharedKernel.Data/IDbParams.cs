@@ -13,7 +13,7 @@
         DbParam Guid(string field, Guid? value = null);
         DbParam TableValued(string field, ITableValuedParamConverter converter, object? value = null);
 
-        T GetOutput<T>(string field);
+        T? GetOutput<T>(string field);
 
         string ToProviderSql(string sql);
         dynamic ToProviderParams();
