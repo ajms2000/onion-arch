@@ -42,7 +42,7 @@ namespace System.Data
         /// <param name="parameters">Db parameters to apply on the query. Can be null or empty.</param>
         /// <param name="streamFieldColumnIndex">If the SQL statement return multiple columns, then specify the column index of the interested field to read as stream.</param>
         /// <returns></returns>
-        public async Task<DbFieldItemStreamResult> GetSingleResultAsync(string sql, IEnumerable<TParameter> parameters, int streamFieldColumnIndex = 0)
+        public async Task<DbFieldItemStreamResult> GetSingleResultAsync(string sql, IEnumerable<TParameter> parameters, int streamFieldColumnIndex = 0, CancellationToken cancellationToken = default)
         {
             var ret = new DbFieldItemStreamResult();
             var con = NewConnection();
@@ -64,11 +64,12 @@ namespace System.Data
                     CommandBehavior.SequentialAccess |
                     CommandBehavior.SingleResult |
                     CommandBehavior.SingleRow |
-                    CommandBehavior.CloseConnection);
+                    CommandBehavior.CloseConnection,
+                    cancellationToken);
 
-                if (await reader.ReadAsync())
+                if (await reader.ReadAsync(cancellationToken))
                 {
-                    if (!await reader.IsDBNullAsync(streamFieldColumnIndex))
+                    if (!await reader.IsDBNullAsync(streamFieldColumnIndex, cancellationToken))
                     {
                         ret.ContentStream = reader.GetStream(streamFieldColumnIndex);
                         ret.Success = true;

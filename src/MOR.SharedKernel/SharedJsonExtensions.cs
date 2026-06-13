@@ -15,7 +15,7 @@ namespace System
 
     public static partial class SharedJsonExtensions
     {
-        public static string? ToJson(object? obj, JSFlags flags = JSFlags.None)
+        public static string? ToJson(this object? obj, JSFlags flags = JSFlags.None)
         {
             if (obj == null)
             {
@@ -28,7 +28,7 @@ namespace System
             return ret;
         }
 
-        public static T? FromJson<T>(string? data, JSFlags flags = JSFlags.None)
+        public static T? FromJson<T>(this string? data, JSFlags flags = JSFlags.None)
         {
             if (data == null)
             {
@@ -41,7 +41,8 @@ namespace System
             return ret;
         }
 
-        public static JsonSerializerOptions GetSerializerOptions(JSFlags flags)
+
+        internal static JsonSerializerOptions GetSerializerOptions(JSFlags flags)
         {
             var ret = new JsonSerializerOptions
             {
@@ -68,7 +69,6 @@ namespace System
 
             return ret;
         }
-
 
         private static bool HasFlag(this JSFlags flags, JSFlags contains)
         {

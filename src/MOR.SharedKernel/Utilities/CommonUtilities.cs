@@ -48,20 +48,20 @@ namespace System
             }
         }
 
-        public async static Task<byte[]> StreamToBytesAsync(Stream stream)
+        public async static Task<byte[]> StreamToBytesAsync(Stream stream, CancellationToken cancellationToken = default)
         {
-            using (var ms = await stream.ToMemoryStreamAsync())
+            using (var ms = await stream.ToMemoryStreamAsync(cancellationToken))
             {
                 var ret = ms.ToArray();
                 return ret;
             }
         }
 
-        public async static Task<MemoryStream> ToMemoryStreamAsync(this Stream stream)
+        public async static Task<MemoryStream> ToMemoryStreamAsync(this Stream stream, CancellationToken cancellationToken = default)
         {
             var ms = new MemoryStream();
 
-            await stream.CopyToAsync(ms);
+            await stream.CopyToAsync(ms, cancellationToken);
             ms.Seek(0L, SeekOrigin.Begin);
 
             return ms;
@@ -332,7 +332,7 @@ namespace System
         }
 
 
-        public static void ReleaseMemoryAsync(int delayFirst = 2000, int delaySecond = 10000)
+        public static void ReleaseMemory(int delayFirst = 2000, int delaySecond = 10000)
         {
             //Task.Delay(delayFirst).Wait();
             System.Threading.Thread.Sleep(delayFirst);
