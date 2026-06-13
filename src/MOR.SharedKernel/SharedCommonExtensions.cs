@@ -38,7 +38,7 @@ namespace System
 
         // ***************** Collection Based *****************
 
-        public static bool AnyAndNotNull<T>(this IEnumerable<T> items, Func<T, bool>? predicate = null)
+        public static bool AnyAndNotNull<T>(this IEnumerable<T>? items, Func<T, bool>? predicate = null)
         {
             var ret = false;
 
