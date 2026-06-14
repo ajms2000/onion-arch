@@ -1,5 +1,5 @@
 <Solution>
-  <Folder Name="/Common/">
+  <Folder Name="/Abstractions/">
     <Project Path="MOR.App/MOR.App.csproj" />
     <Project Path="MOR.Domain/MOR.Domain.csproj" Id="c22136f4-e6b6-4e0f-9f25-5904658fb839" />
   </Folder>
