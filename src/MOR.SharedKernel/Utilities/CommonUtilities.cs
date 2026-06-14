@@ -88,7 +88,7 @@ namespace System
         }
 
 
-        public static void DisposeSafe(this IDisposable obj)
+        public static void DisposeSafe(this IDisposable? obj)
         {
             if (obj != null)
             {
