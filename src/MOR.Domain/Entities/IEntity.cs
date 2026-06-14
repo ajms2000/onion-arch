@@ -1,4 +1,4 @@
-﻿namespace MOR.Data.Entities
+﻿namespace MOR.Entities
 {
     public interface IEntity
     {

@@ -1,4 +1,4 @@
-﻿namespace MOR.Data.Repositories
+﻿namespace MOR.Repositories
 {
     public interface IRepository
     {
