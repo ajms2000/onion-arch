@@ -1,6 +1,6 @@
 ﻿namespace MOR.Settings
 {
-    public interface ISettings
+    public interface IDomainSettings
     {
     }
 }
