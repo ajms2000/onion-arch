@@ -9,7 +9,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\MOR.SharedKernel\MOR.SharedKernel.csproj" />
+		<ProjectReference Include="..\..\SharedKernel\MOR.SharedKernel\MOR.SharedKernel.csproj" />
 	</ItemGroup>
 
 </Project>

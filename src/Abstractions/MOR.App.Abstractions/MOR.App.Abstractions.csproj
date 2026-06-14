@@ -9,7 +9,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\MOR.Domain\MOR.Domain.csproj" />
+		<ProjectReference Include="..\MOR.Domain.Abstractions\MOR.Domain.Abstractions.csproj" />
 	</ItemGroup>
 
 </Project>

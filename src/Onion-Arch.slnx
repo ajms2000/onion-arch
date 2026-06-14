@@ -1,11 +1,11 @@
 <Solution>
   <Folder Name="/Abstractions/">
-    <Project Path="MOR.App/MOR.App.csproj" />
-    <Project Path="MOR.Domain/MOR.Domain.csproj" Id="c22136f4-e6b6-4e0f-9f25-5904658fb839" />
+    <Project Path="Abstractions/MOR.App.Abstractions/MOR.App.Abstractions.csproj" />
+    <Project Path="Abstractions/MOR.Domain.Abstractions/MOR.Domain.Abstractions.csproj" Id="c22136f4-e6b6-4e0f-9f25-5904658fb839" />
   </Folder>
   <Folder Name="/SharedKernel/">
-    <Project Path="MOR.SharedKernel.Data .Sql/MOR.SharedKernel.Data.Sql.csproj" />
-    <Project Path="MOR.SharedKernel.Data/MOR.SharedKernel.Data.csproj" Id="024dbc4b-ddde-478f-a985-8c22afb8e358" />
-    <Project Path="MOR.SharedKernel/MOR.SharedKernel.csproj" Id="1f0aef1d-4f9c-4b3f-a342-defeb7a67a12" />
+    <Project Path="SharedKernel/MOR.SharedKernel.Data.Sql/MOR.SharedKernel.Data.Sql.csproj" />
+    <Project Path="SharedKernel/MOR.SharedKernel.Data/MOR.SharedKernel.Data.csproj" Id="024dbc4b-ddde-478f-a985-8c22afb8e358" />
+    <Project Path="SharedKernel/MOR.SharedKernel/MOR.SharedKernel.csproj" Id="1f0aef1d-4f9c-4b3f-a342-defeb7a67a12" />
   </Folder>
 </Solution>
