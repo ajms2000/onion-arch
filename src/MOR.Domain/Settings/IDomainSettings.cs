@@ -2,5 +2,6 @@
 {
     public interface IDomainSettings
     {
+        void Process();
     }
 }
