@@ -3,15 +3,17 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace MOR.App
 {
+    /// <summary>
+    /// IMPORTANT: Do not register this as Singleton in DI container.
+    /// </summary>
     public abstract class AbstractAppContext
     {
-        private readonly IServiceScope SScope;
-        protected IServiceProvider SP => SScope.ServiceProvider;
+        protected readonly IServiceProvider SP;
 
 
         public AbstractAppContext(IServiceProvider sp)
         {
-            SScope = sp.CreateScope();
+            SP = sp;
         }
 
 
@@ -20,15 +22,12 @@ namespace MOR.App
         public TService GetService<TService>() where TService : notnull => SP.GetRequiredService<TService>();
 
         public TService GetKeyedService<TService>(string key) where TService : notnull => SP.GetRequiredKeyedService<TService>(key);
-
-
-        ~AbstractAppContext()
-        {
-            SScope.DisposeSafe();
-        }
     }
 
 
+    /// <summary>
+    /// IMPORTANT: Do not register this as Singleton in DI container.
+    /// </summary>
     public abstract class AbstractWebAppContext : AbstractAppContext
     {
         public AbstractWebAppContext(IServiceProvider sp)
@@ -38,6 +37,9 @@ namespace MOR.App
     }
 
 
+    /// <summary>
+    /// IMPORTANT: Do not register this as Singleton in DI container.
+    /// </summary>
     public abstract class AbstractServerlessAppContext : AbstractAppContext
     {
         public AbstractServerlessAppContext(IServiceProvider sp)
