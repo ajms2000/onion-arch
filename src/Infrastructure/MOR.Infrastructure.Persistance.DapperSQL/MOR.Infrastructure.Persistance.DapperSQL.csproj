@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net10.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Dapper" Version="2.1.79" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\Abstractions\MOR.Domain.Abstractions\MOR.Domain.Abstractions.csproj" />
+		<ProjectReference Include="..\..\SharedKernel\MOR.SharedKernel.Data.Sql\MOR.SharedKernel.Data.Sql.csproj" />
+	</ItemGroup>
+
+</Project>
