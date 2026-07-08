@@ -2,17 +2,17 @@
 {
     public abstract class BaseRepository : IRepository
     {
-        public BaseRepository(IUnitOfWork uow)
+        public BaseRepository(IRepositoryContext uow)
         {
             UOW = uow;
         }
 
 
-        protected virtual IUnitOfWork UOW { get; private set; }
+        protected virtual IRepositoryContext UOW { get; private set; }
     }
 
     public abstract class BaseRepository<TUnitOfWork> : BaseRepository, IRepository<TUnitOfWork>
-        where TUnitOfWork : IUnitOfWork
+        where TUnitOfWork : IRepositoryContext
     {
         public BaseRepository(TUnitOfWork uow)
             : base(uow)

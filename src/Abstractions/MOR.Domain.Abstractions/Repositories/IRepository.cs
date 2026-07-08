@@ -5,7 +5,7 @@
     }
 
     public interface IRepository<TUnitOfWork>
-        where TUnitOfWork : IUnitOfWork
+        where TUnitOfWork : IRepositoryContext
     {
     }
 }

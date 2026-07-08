@@ -1,6 +1,6 @@
 ﻿namespace MOR.Repositories
 {
-    public interface IUnitOfWork
+    public interface IRepositoryContext
     {
     }
 }
