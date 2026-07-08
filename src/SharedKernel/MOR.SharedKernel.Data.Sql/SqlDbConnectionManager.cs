@@ -1,5 +1,4 @@
 using Microsoft.Data.SqlClient;
-using System.Data.Common;
 
 namespace System.Data.Sql
 {

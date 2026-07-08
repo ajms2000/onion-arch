@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using MOR.Repositories;
 using System.Data;
 using System.Data.Common;
 
@@ -6,27 +7,36 @@ namespace MOR.Infrastructure.Persistance.DapperOrm
 {
     // TODO : Add polly
 
-    public abstract class DapperQueryExecutorBase<TDbConnection, TDbTransaction, TConnectionManager>
+    public abstract class DapperRepositoryContextBase<TDbConnection, TDbTransaction> : DbConnectionManagerBase<TDbConnection, TDbTransaction>, IAbstractRepositoryContext<TDbConnection, TDbTransaction>
         where TDbConnection : DbConnection, new()
         where TDbTransaction : DbTransaction
-        where TConnectionManager : DbConnectionManagerBase<TDbConnection, TDbTransaction>
     {
-        protected readonly TConnectionManager ConMgr;
-
-
-        public DapperQueryExecutorBase(TConnectionManager connectionManager)
+        public DapperRepositoryContextBase(string connectionString)
+            : base(connectionString)
         {
-            ConMgr = connectionManager;
         }
 
+
+        // ------- Public Functions -------
+
+        /// <summary>
+        /// This does not have any effect in base implementation. Extend as required.
+        /// </summary>
+        public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            return Task.FromResult(int.MinValue);
+        }
+
+
+        // ------- Dapper Wrappers -------
 
         public async Task<List<T>> QueryAsync<T>(string sql, object? param = null, CommandType? commandType = null, int? timeout = null)
         {
             var oParam = param ?? GenerateParameters(param!);
 
-            var con = await ConMgr.GetConnectionAsync().ConfigureAwait(false);
+            var con = await base.GetConnectionAsync();
 
-            ConMgr.TryGetCurrentTransaction(out TDbTransaction? trans);
+            base.TryGetCurrentTransaction(out TDbTransaction? trans);
 
             var result = await con.QueryAsync<T>(
                 sql,
@@ -44,9 +54,9 @@ namespace MOR.Infrastructure.Persistance.DapperOrm
         {
             var oParam = param ?? GenerateParameters(param!);
 
-            var con = await ConMgr.GetConnectionAsync();
+            var con = await base.GetConnectionAsync();
 
-            ConMgr.TryGetCurrentTransaction(out TDbTransaction? trans);
+            base.TryGetCurrentTransaction(out TDbTransaction? trans);
 
             var reader = await con.QueryMultipleAsync(
                 sql,
@@ -64,9 +74,9 @@ namespace MOR.Infrastructure.Persistance.DapperOrm
         {
             var oParam = param ?? GenerateParameters(param!);
 
-            var con = await ConMgr.GetConnectionAsync();
+            var con = await base.GetConnectionAsync();
 
-            ConMgr.TryGetCurrentTransaction(out TDbTransaction? trans);
+            base.TryGetCurrentTransaction(out TDbTransaction? trans);
 
             var ret = await con.ExecuteAsync(
                 sql,
@@ -83,9 +93,9 @@ namespace MOR.Infrastructure.Persistance.DapperOrm
         {
             var oParam = param ?? GenerateParameters(param!);
 
-            var con = await ConMgr.GetConnectionAsync();
+            var con = await base.GetConnectionAsync();
 
-            ConMgr.TryGetCurrentTransaction(out TDbTransaction? trans);
+            base.TryGetCurrentTransaction(out TDbTransaction? trans);
 
             var cDef = new CommandDefinition(sql, oParam, trans, timeout, commandType);
             var cBehav = CommandBehavior.SequentialAccess | CommandBehavior.SingleResult | CommandBehavior.SingleRow | CommandBehavior.CloseConnection;
