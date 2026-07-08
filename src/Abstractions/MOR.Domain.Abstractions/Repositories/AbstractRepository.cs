@@ -2,9 +2,9 @@
 {
     public abstract class AbstractRepository : IAbstractRepository
     {
-        public AbstractRepository(IAbstractRepositoryContext repoContext)
+        public AbstractRepository(IAbstractRepositoryContext context)
         {
-            RepoContext = repoContext;
+            RepoContext = context;
         }
 
 
@@ -14,8 +14,8 @@
     public abstract class AbstractRepository<TRepositoryContext> : AbstractRepository, IAbstractRepository<TRepositoryContext>
         where TRepositoryContext : IAbstractRepositoryContext
     {
-        public AbstractRepository(TRepositoryContext uow)
-            : base(uow)
+        public AbstractRepository(TRepositoryContext context)
+            : base(context)
         {
         }
     }
