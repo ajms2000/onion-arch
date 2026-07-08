@@ -4,8 +4,8 @@
     {
     }
 
-    public interface IRepository<TUnitOfWork>
-        where TUnitOfWork : IRepositoryContext
+    public interface IRepository<TRepositoryContext>
+        where TRepositoryContext : IRepositoryContext
     {
     }
 }
