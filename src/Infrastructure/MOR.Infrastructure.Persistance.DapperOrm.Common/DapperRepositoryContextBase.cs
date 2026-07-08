@@ -30,11 +30,11 @@ namespace MOR.Infrastructure.Persistance.DapperOrm
 
         // ------- Dapper Wrappers -------
 
-        public async Task<List<T>> QueryAsync<T>(string sql, object? param = null, CommandType? commandType = null, int? timeout = null)
+        protected async Task<List<T>> QueryAsync<T>(string sql, object? param = null, CommandType? commandType = null, int? timeout = null, CancellationToken cancellationToken = default)
         {
             var oParam = param ?? GenerateParameters(param!);
 
-            var con = await base.GetConnectionAsync();
+            var con = await base.GetConnectionAsync(cancellationToken: cancellationToken);
 
             base.TryGetCurrentTransaction(out TDbTransaction? trans);
 
@@ -43,18 +43,18 @@ namespace MOR.Infrastructure.Persistance.DapperOrm
                 param: param,
                 commandType: commandType,
                 transaction: trans,
-                commandTimeout: timeout).ConfigureAwait(false);
+                commandTimeout: timeout);
 
             var ret = result.AsList();
             return ret;
         }
 
 
-        public async Task<DapperMultiReader> QueryMultipleAsync(string sql, object? param = null, CommandType? commandType = null, int? timeout = null)
+        protected async Task<DapperMultiReader> QueryMultipleAsync(string sql, object? param = null, CommandType? commandType = null, int? timeout = null, CancellationToken cancellationToken = default)
         {
             var oParam = param ?? GenerateParameters(param!);
 
-            var con = await base.GetConnectionAsync();
+            var con = await base.GetConnectionAsync(cancellationToken: cancellationToken);
 
             base.TryGetCurrentTransaction(out TDbTransaction? trans);
 
@@ -70,11 +70,11 @@ namespace MOR.Infrastructure.Persistance.DapperOrm
         }
 
 
-        public async Task<int> ExecuteAsync(string sql, object? param = null, CommandType? commandType = null, int? timeout = null)
+        protected async Task<int> ExecuteAsync(string sql, object? param = null, CommandType? commandType = null, int? timeout = null, CancellationToken cancellationToken = default)
         {
             var oParam = param ?? GenerateParameters(param!);
 
-            var con = await base.GetConnectionAsync();
+            var con = await base.GetConnectionAsync(cancellationToken: cancellationToken);
 
             base.TryGetCurrentTransaction(out TDbTransaction? trans);
 
@@ -89,11 +89,11 @@ namespace MOR.Infrastructure.Persistance.DapperOrm
         }
 
 
-        public async Task<Stream?> ReadSingleStreamAsync(string sql, object? param = null, CommandType? commandType = null, int dataColumnIndex = 0, int? timeout = null)
+        protected async Task<Stream?> ReadSingleStreamAsync(string sql, object? param = null, CommandType? commandType = null, int dataColumnIndex = 0, int? timeout = null, CancellationToken cancellationToken = default)
         {
             var oParam = param ?? GenerateParameters(param!);
 
-            var con = await base.GetConnectionAsync();
+            var con = await base.GetConnectionAsync(cancellationToken: cancellationToken);
 
             base.TryGetCurrentTransaction(out TDbTransaction? trans);
 
