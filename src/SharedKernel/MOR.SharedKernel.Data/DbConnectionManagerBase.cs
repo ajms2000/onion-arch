@@ -145,7 +145,7 @@ namespace System.Data
             }
         }
 
-        public bool TryGetCurrentTransaction(out DbTransaction? transaction)
+        public bool TryGetCurrentTransaction(out TDbTransaction? transaction)
         {
             transaction = null;
 
