@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using MOR.Repositories;
+using System.Collections.Concurrent;
 using System.Data;
 using System.Data.Common;
 
@@ -11,6 +12,9 @@ namespace MOR.Infrastructure.Persistance.DapperOrm
         where TDbConnection : DbConnection, new()
         where TDbTransaction : DbTransaction
     {
+        private readonly ConcurrentDictionary<Type, IAbstractRepository<IAbstractRepositoryContext>> RepoCache = new ConcurrentDictionary<Type, IAbstractRepository<IAbstractRepositoryContext>>();
+
+
         public DapperRepositoryContextBase(string connectionString)
             : base(connectionString)
         {
@@ -25,6 +29,36 @@ namespace MOR.Infrastructure.Persistance.DapperOrm
         public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             return Task.FromResult(int.MinValue);
+        }
+
+
+        // ------- Repository Factory -------
+
+        public virtual TRepository GetRepository<TRepository>()
+            where TRepository : class, IAbstractRepository<IAbstractRepositoryContext>
+        {
+            var repoType = typeof(TRepository);
+
+            var ret = RepoCache.GetOrAdd(repoType, (t) =>
+            {
+                return NewRepository<TRepository>();
+            }) as TRepository;
+
+            if (ret == null)
+            {
+                throw new InvalidOperationException($"Unable to obtain repository of type '{repoType.FullName}'.");
+            }
+
+            return ret;
+        }
+
+        public virtual TRepository NewRepository<TRepository>()
+            where TRepository : class, IAbstractRepository<IAbstractRepositoryContext>
+        {
+            var repoType = typeof(TRepository);
+
+            var ret = (TRepository)Activator.CreateInstance(repoType, args: this.WrapInArray())!;
+            return ret;
         }
 
 
