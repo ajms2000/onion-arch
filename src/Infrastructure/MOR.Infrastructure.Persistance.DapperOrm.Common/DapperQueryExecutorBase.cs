@@ -4,6 +4,8 @@ using System.Data.Common;
 
 namespace MOR.Infrastructure.Persistance.DapperOrm
 {
+    // TODO : Add polly
+
     public abstract class DapperQueryExecutorBase<TDbConnection, TDbTransaction, TConnectionManager>
         where TDbConnection : DbConnection, new()
         where TDbTransaction : DbTransaction
