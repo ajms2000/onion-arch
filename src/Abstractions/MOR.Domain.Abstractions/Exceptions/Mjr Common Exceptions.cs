@@ -16,12 +16,12 @@
     public class MjrGeneralException : MjrException
     {
         protected MjrGeneralException(MjrExceptionCategory errorCategory, string errorCode)
-            : base(MjrExceptionCategory.System, errorCode)
+            : base(errorCategory, errorCode)
         {
         }
 
         protected MjrGeneralException(MjrExceptionCategory errorCategory, string errorCode, Exception innerException)
-            : base(MjrExceptionCategory.System, errorCode, innerException)
+            : base(errorCategory, errorCode, innerException)
         {
         }
     }
