@@ -5,6 +5,8 @@
   </Folder>
   <Folder Name="/Infrastructure/">
     <Project Path="Infrastructure/MOR.App.Services.Common/MOR.App.Services.Common.csproj" Id="897793fc-f361-4f6a-98db-7e90692357d0" />
+    <Project Path="Infrastructure/MOR.Azure.Common/MOR.Azure.Common.csproj" Id="16b1d68b-d3af-4da8-9f1b-f1bfd2b65ff0" />
+    <Project Path="Infrastructure/MOR.HttpServices.Common/MOR.HttpServices.Common.csproj" Id="fdb054df-414b-43ec-a410-0f75a44e51a2" />
     <Project Path="Infrastructure/MOR.Persistance.DapperOrm.Common/MOR.Persistance.DapperOrm.Common.csproj" Id="c980b6ab-f9b1-45de-a25e-0153ae6b691b" />
     <Project Path="Infrastructure/MOR.Persistance.DapperOrm.DB2/MOR.Persistance.DapperOrm.DB2.csproj" Id="f38a9dc8-6a7a-4fd7-bcec-4257590895e5" />
     <Project Path="Infrastructure/MOR.Persistance.DapperOrm.SQL/MOR.Persistance.DapperOrm.SQL.csproj" />
