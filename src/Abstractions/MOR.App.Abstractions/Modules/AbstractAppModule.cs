@@ -14,7 +14,7 @@ namespace MOR.App.Modules
         }
 
 
-        protected string GetCodeMessage(string code, string? defaultValue = null)
+        protected string? GetCodeMessage(string code, string? defaultValue = null)
         {
             var msgProv = Context.GetService<ICodeMessageProvider>();
 

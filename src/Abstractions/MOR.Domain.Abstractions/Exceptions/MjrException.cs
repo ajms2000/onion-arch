@@ -102,7 +102,7 @@ namespace MOR.Exceptions
 
                 if (formatParams.AnyAndNotNull())
                 {
-                    _ProcessedMessage = string.Format(_ProcessedMessage, formatParams ?? []);
+                    _ProcessedMessage = string.Format(_ProcessedMessage!, formatParams ?? []);
                 }
             }
             else
