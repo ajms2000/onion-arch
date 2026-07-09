@@ -2,9 +2,9 @@
 
 namespace MOR.Persistance.DapperOrm.SQL
 {
-    public class DapperRepositoryContextSQL : DapperRepositoryContextBase<SqlConnection, SqlTransaction>
+    public abstract class DapperRepositoryContextSQLBase : DapperRepositoryContextBase<SqlConnection, SqlTransaction>
     {
-        public DapperRepositoryContextSQL(string connectionString)
+        public DapperRepositoryContextSQLBase(string connectionString)
             : base(connectionString)
         {
         }

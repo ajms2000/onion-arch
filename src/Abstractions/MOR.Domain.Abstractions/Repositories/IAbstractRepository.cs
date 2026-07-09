@@ -1,11 +1,8 @@
 ﻿namespace MOR.Repositories
 {
-    public interface IAbstractRepository
-    {
-    }
-
-    public interface IAbstractRepository<TRepositoryContext> : IAbstractRepository
+    public interface IAbstractRepository<TRepositoryContext>
         where TRepositoryContext : IAbstractRepositoryContext
     {
+        TRepositoryContext RepoContext { get; }
     }
 }

@@ -1,22 +1,14 @@
 ﻿namespace MOR.Repositories
 {
-    public abstract class AbstractRepository : IAbstractRepository
+    public abstract class AbstractRepository<TRepositoryContext> : IAbstractRepository<TRepositoryContext>
+        where TRepositoryContext : IAbstractRepositoryContext
     {
-        public AbstractRepository(IAbstractRepositoryContext context)
+        public AbstractRepository(TRepositoryContext context)
         {
             RepoContext = context;
         }
 
 
-        protected virtual IAbstractRepositoryContext RepoContext { get; private set; }
-    }
-
-    public abstract class AbstractRepository<TRepositoryContext> : AbstractRepository, IAbstractRepository<TRepositoryContext>
-        where TRepositoryContext : IAbstractRepositoryContext
-    {
-        public AbstractRepository(TRepositoryContext context)
-            : base(context)
-        {
-        }
+        public TRepositoryContext RepoContext { get; private set; }
     }
 }
