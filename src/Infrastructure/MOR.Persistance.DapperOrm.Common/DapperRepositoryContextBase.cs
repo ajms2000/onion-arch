@@ -8,7 +8,7 @@ namespace MOR.Persistance.DapperOrm
 {
     // TODO : Add polly
 
-    public abstract class DapperRepositoryContextBase<TDbConnection, TDbTransaction> : DbConnectionManagerBase<TDbConnection, TDbTransaction>, IAbstractRepositoryContext<TDbConnection, TDbTransaction>
+    public abstract class DapperRepositoryContextBase<TDbConnection, TDbTransaction> : DbConnectionManagerBase<TDbConnection, TDbTransaction>, IAbstractRepositoryContext
         where TDbConnection : DbConnection, new()
         where TDbTransaction : DbTransaction
     {
@@ -21,7 +21,24 @@ namespace MOR.Persistance.DapperOrm
         }
 
 
-        // ------- Public Functions -------
+        // ------- IAbstractRepositoryContext Functions -------
+
+        public async Task<bool> OpenConnectionAsync(CancellationToken cancellationToken = default)
+        {
+            var con = await GetConnectionAsync(isOpen: true, cancellationToken);
+
+            var ret = con.State == ConnectionState.Open;
+            return ret;
+        }
+
+        public async Task<bool> StartTransactionAsync(CancellationToken cancellationToken = default)
+        {
+            await BeginTransactionAsync(cancellationToken);
+
+            var ret = IsInTransaction();
+            return ret;
+        }
+
 
         /// <summary>
         /// This does not have any effect in base implementation. Extend as required.
