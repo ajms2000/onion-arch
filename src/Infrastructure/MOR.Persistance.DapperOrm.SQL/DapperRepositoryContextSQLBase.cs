@@ -1,10 +1,11 @@
 ﻿using Microsoft.Data.SqlClient;
+using MOR.Repositories;
 using System.Data;
 using System.Data.Sql;
 
 namespace MOR.Persistance.DapperOrm.SQL
 {
-    public abstract class DapperRepositoryContextSQLBase : DapperRepositoryContextBase<SqlConnection, SqlTransaction>
+    public abstract class DapperRepositoryContextSQLBase : DapperRepositoryContextBase<SqlConnection, SqlTransaction>, IAbstractRepositoryContext
     {
         public DapperRepositoryContextSQLBase(string connectionString)
             : base(connectionString)

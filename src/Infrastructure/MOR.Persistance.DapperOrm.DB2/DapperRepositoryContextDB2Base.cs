@@ -1,9 +1,10 @@
 ﻿using IBM.Data.Db2;
+using MOR.Repositories;
 using System.Data;
 
 namespace MOR.Persistance.DapperOrm.DB2
 {
-    public class DapperRepositoryContextDB2Base : DapperRepositoryContextBase<DB2Connection, DB2Transaction>
+    public class DapperRepositoryContextDB2Base : DapperRepositoryContextBase<DB2Connection, DB2Transaction>, IAbstractRepositoryContext
     {
         public DapperRepositoryContextDB2Base(string connectionString)
             : base(connectionString)

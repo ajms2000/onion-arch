@@ -8,7 +8,7 @@ namespace MOR.Persistance.DapperOrm
 {
     // TODO : Add polly
 
-    public abstract class DapperRepositoryContextBase<TDbConnection, TDbTransaction> : DbConnectionManagerBase<TDbConnection, TDbTransaction>, IAbstractDapperRepositoryContext
+    public abstract class DapperRepositoryContextBase<TDbConnection, TDbTransaction> : DbConnectionManagerBase<TDbConnection, TDbTransaction>
         where TDbConnection : DbConnection, new()
         where TDbTransaction : DbTransaction
     {
