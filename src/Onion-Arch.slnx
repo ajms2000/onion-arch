@@ -4,6 +4,7 @@
     <Project Path="Abstractions/MOR.Domain.Abstractions/MOR.Domain.Abstractions.csproj" Id="c22136f4-e6b6-4e0f-9f25-5904658fb839" />
   </Folder>
   <Folder Name="/Infrastructure/">
+    <Project Path="Infrastructure/MOR.App.Services.Common/MOR.App.Services.Common.csproj" Id="897793fc-f361-4f6a-98db-7e90692357d0" />
     <Project Path="Infrastructure/MOR.Persistance.DapperOrm.Common/MOR.Persistance.DapperOrm.Common.csproj" Id="c980b6ab-f9b1-45de-a25e-0153ae6b691b" />
     <Project Path="Infrastructure/MOR.Persistance.DapperOrm.DB2/MOR.Persistance.DapperOrm.DB2.csproj" Id="f38a9dc8-6a7a-4fd7-bcec-4257590895e5" />
     <Project Path="Infrastructure/MOR.Persistance.DapperOrm.SQL/MOR.Persistance.DapperOrm.SQL.csproj" />
