@@ -9,6 +9,7 @@ namespace MOR.Persistance.DapperOrm.SQL
         {
         }
 
+
         protected override SqlConnection CreateConnectionObject()
         {
             return new SqlConnection(ConnectionString);

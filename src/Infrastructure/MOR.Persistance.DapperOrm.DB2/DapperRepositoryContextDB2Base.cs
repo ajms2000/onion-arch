@@ -9,6 +9,7 @@ namespace MOR.Persistance.DapperOrm.DB2
         {
         }
 
+
         protected override DB2Connection CreateConnectionObject()
         {
             return new DB2Connection(ConnectionString);
