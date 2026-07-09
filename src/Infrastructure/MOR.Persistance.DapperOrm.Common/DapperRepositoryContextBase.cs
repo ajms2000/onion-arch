@@ -26,7 +26,7 @@ namespace MOR.Persistance.DapperOrm
         /// <summary>
         /// This does not have any effect in base implementation. Extend as required.
         /// </summary>
-        public Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        public virtual Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
         {
             return Task.FromResult(int.MinValue);
         }
@@ -64,7 +64,7 @@ namespace MOR.Persistance.DapperOrm
 
         // ------- Dapper Wrappers -------
 
-        protected async Task<List<T>> QueryAsync<T>(string sql, object? param = null, CommandType? commandType = null, int? timeout = null, CancellationToken cancellationToken = default)
+        public async Task<List<T>> QueryAsync<T>(string sql, object? param = null, CommandType? commandType = null, int? timeout = null, CancellationToken cancellationToken = default)
         {
             var oParam = param ?? GenerateParameters(param!);
 
@@ -84,7 +84,7 @@ namespace MOR.Persistance.DapperOrm
         }
 
 
-        protected async Task<DapperMultiReader> QueryMultipleAsync(string sql, object? param = null, CommandType? commandType = null, int? timeout = null, CancellationToken cancellationToken = default)
+        public async Task<DapperMultiReader> QueryMultipleAsync(string sql, object? param = null, CommandType? commandType = null, int? timeout = null, CancellationToken cancellationToken = default)
         {
             var oParam = param ?? GenerateParameters(param!);
 
@@ -104,7 +104,7 @@ namespace MOR.Persistance.DapperOrm
         }
 
 
-        protected async Task<int> ExecuteAsync(string sql, object? param = null, CommandType? commandType = null, int? timeout = null, CancellationToken cancellationToken = default)
+        public async Task<int> ExecuteAsync(string sql, object? param = null, CommandType? commandType = null, int? timeout = null, CancellationToken cancellationToken = default)
         {
             var oParam = param ?? GenerateParameters(param!);
 
@@ -123,7 +123,7 @@ namespace MOR.Persistance.DapperOrm
         }
 
 
-        protected async Task<Stream?> ReadSingleStreamAsync(string sql, object? param = null, CommandType? commandType = null, int dataColumnIndex = 0, int? timeout = null, CancellationToken cancellationToken = default)
+        public async Task<Stream?> ReadSingleStreamAsync(string sql, object? param = null, CommandType? commandType = null, int dataColumnIndex = 0, int? timeout = null, CancellationToken cancellationToken = default)
         {
             var oParam = param ?? GenerateParameters(param!);
 
