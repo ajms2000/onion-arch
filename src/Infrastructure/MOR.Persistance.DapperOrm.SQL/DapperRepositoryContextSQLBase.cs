@@ -1,4 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
+using System.Data;
+using System.Data.Sql;
 
 namespace MOR.Persistance.DapperOrm.SQL
 {
@@ -7,6 +9,12 @@ namespace MOR.Persistance.DapperOrm.SQL
         public DapperRepositoryContextSQLBase(string connectionString)
             : base(connectionString)
         {
+        }
+
+
+        public override IDbParams NewDbParams()
+        {
+            return new SqlDbParams();
         }
 
 

@@ -8,7 +8,7 @@ namespace MOR.Persistance.DapperOrm
 {
     // TODO : Add polly
 
-    public abstract class DapperRepositoryContextBase<TDbConnection, TDbTransaction> : DbConnectionManagerBase<TDbConnection, TDbTransaction>, IAbstractRepositoryContext
+    public abstract class DapperRepositoryContextBase<TDbConnection, TDbTransaction> : DbConnectionManagerBase<TDbConnection, TDbTransaction>, IAbstractDapperRepositoryContext
         where TDbConnection : DbConnection, new()
         where TDbTransaction : DbTransaction
     {
@@ -39,7 +39,6 @@ namespace MOR.Persistance.DapperOrm
             return ret;
         }
 
-
         /// <summary>
         /// This does not have any effect in base implementation. Extend as required.
         /// </summary>
@@ -47,6 +46,8 @@ namespace MOR.Persistance.DapperOrm
         {
             return Task.FromResult(int.MinValue);
         }
+
+        public abstract IDbParams NewDbParams();
 
 
         // ------- Repository Factory -------

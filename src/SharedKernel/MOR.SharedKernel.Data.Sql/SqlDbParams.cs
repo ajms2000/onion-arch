@@ -6,7 +6,8 @@ namespace System.Data.Sql
     {
         protected override SqlParameter NewStoreParam(string parameterName, object? value)
         {
-            return new SqlParameter(parameterName, value ?? DBNull.Value);
+            var ret = new SqlParameter(parameterName, value ?? DBNull.Value);
+            return ret;
         }
     }
 }

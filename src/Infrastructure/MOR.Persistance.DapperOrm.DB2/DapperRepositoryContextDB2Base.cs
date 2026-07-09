@@ -1,4 +1,5 @@
 ﻿using IBM.Data.Db2;
+using System.Data;
 
 namespace MOR.Persistance.DapperOrm.DB2
 {
@@ -7,6 +8,12 @@ namespace MOR.Persistance.DapperOrm.DB2
         public DapperRepositoryContextDB2Base(string connectionString)
             : base(connectionString)
         {
+        }
+
+
+        public override IDbParams NewDbParams()
+        {
+            return new DB2DbParams();
         }
 
 
