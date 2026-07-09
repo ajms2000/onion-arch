@@ -1,6 +1,4 @@
-﻿using System.Data.Common;
-
-namespace MOR.Repositories
+﻿namespace MOR.Repositories
 {
     public interface IAbstractRepositoryContext
     {
