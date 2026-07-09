@@ -1,6 +1,6 @@
 ﻿using Dapper;
 
-namespace MOR.Infrastructure.Persistance.DapperOrm
+namespace MOR.Persistance.DapperOrm
 {
     public class DapperMultiReader
     {

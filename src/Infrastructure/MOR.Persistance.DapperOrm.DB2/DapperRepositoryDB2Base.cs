@@ -1,6 +1,6 @@
 ﻿using MOR.Repositories;
 
-namespace MOR.Infrastructure.Persistance.DapperOrm.DB2
+namespace MOR.Persistance.DapperOrm.DB2
 {
     public abstract class DapperRepositoryDB2Base : DapperRepositoryDB2Base<DapperRepositoryContextDB2>
     {

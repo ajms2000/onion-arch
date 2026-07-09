@@ -16,7 +16,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\Abstractions\MOR.Domain.Abstractions\MOR.Domain.Abstractions.csproj" />
 		<ProjectReference Include="..\..\SharedKernel\MOR.SharedKernel.Data\MOR.SharedKernel.Data.csproj" />
-		<ProjectReference Include="..\MOR.Infrastructure.Persistance.DapperOrm.Common\MOR.Infrastructure.Persistance.DapperOrm.Common.csproj" />
+		<ProjectReference Include="..\MOR.Persistance.DapperOrm.Common\MOR.Persistance.DapperOrm.Common.csproj" />
 	</ItemGroup>
 
 </Project>

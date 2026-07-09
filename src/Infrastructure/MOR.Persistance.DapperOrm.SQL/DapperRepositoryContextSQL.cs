@@ -1,6 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 
-namespace MOR.Infrastructure.Persistance.DapperOrm.SQL
+namespace MOR.Persistance.DapperOrm.SQL
 {
     public class DapperRepositoryContextSQL : DapperRepositoryContextBase<SqlConnection, SqlTransaction>
     {

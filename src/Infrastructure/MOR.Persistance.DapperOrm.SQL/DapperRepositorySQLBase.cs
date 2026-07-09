@@ -1,6 +1,6 @@
 ﻿using MOR.Repositories;
 
-namespace MOR.Infrastructure.Persistance.DapperOrm.SQL
+namespace MOR.Persistance.DapperOrm.SQL
 {
     public abstract class DapperRepositorySQLBase : DapperRepositorySQLBase<DapperRepositoryContextSQL>
     {

@@ -4,7 +4,7 @@ using System.Collections.Concurrent;
 using System.Data;
 using System.Data.Common;
 
-namespace MOR.Infrastructure.Persistance.DapperOrm
+namespace MOR.Persistance.DapperOrm
 {
     // TODO : Add polly
 
