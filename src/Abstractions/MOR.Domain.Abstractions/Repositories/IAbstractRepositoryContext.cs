@@ -9,9 +9,9 @@
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
 
         TRepository GetRepository<TRepository>()
-            where TRepository : class, IAbstractRepository<IAbstractRepositoryContext>;
+            where TRepository : IAbstractRepository<IAbstractRepositoryContext>;
 
         TRepository NewRepository<TRepository>()
-            where TRepository : class, IAbstractRepository<IAbstractRepositoryContext>;
+            where TRepository : IAbstractRepository<IAbstractRepositoryContext>;
     }
 }

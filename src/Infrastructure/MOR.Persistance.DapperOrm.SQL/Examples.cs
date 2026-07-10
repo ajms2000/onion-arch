@@ -33,6 +33,19 @@ namespace MOR.Persistance.DapperOrm.SQL
             : base(con)
         {
         }
+
+        public override TRepository NewRepository<TRepository>()
+        {
+            var repoType = typeof(TRepository);
+            var ret = default(DapperRepositorySQLBase);
+
+            if (repoType == typeof(ICoreUserRepo))
+            {
+                ret = new CoreUserRepo(this);
+            }
+
+            return (TRepository)(object)ret!;
+        }
     }
 
     public class CoreUserRepo : DapperRepositorySQLBase, ICoreUserRepo

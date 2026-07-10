@@ -8,7 +8,7 @@ namespace MOR.Persistance.DapperOrm
 {
     // TODO : Add polly
 
-    public abstract class DapperRepositoryContextBase<TDbConnection, TDbTransaction> : DbConnectionManagerBase<TDbConnection, TDbTransaction>
+    public abstract class DapperRepositoryContextBase<TDbConnection, TDbTransaction> : DbConnectionManagerBase<TDbConnection, TDbTransaction>, IAbstractRepositoryContext
         where TDbConnection : DbConnection, new()
         where TDbTransaction : DbTransaction
     {
@@ -53,31 +53,25 @@ namespace MOR.Persistance.DapperOrm
         // ------- Repository Factory -------
 
         public virtual TRepository GetRepository<TRepository>()
-            where TRepository : class, IAbstractRepository<IAbstractRepositoryContext>
+            where TRepository : IAbstractRepository<IAbstractRepositoryContext>
         {
             var repoType = typeof(TRepository);
 
-            var ret = RepoCache.GetOrAdd(repoType, (t) =>
+            var repo = RepoCache.GetOrAdd(repoType, (t) =>
             {
                 return NewRepository<TRepository>();
-            }) as TRepository;
+            });
 
-            if (ret == null)
+            if (repo == null)
             {
                 throw new InvalidOperationException($"Unable to obtain repository of type '{repoType.FullName}'.");
             }
 
-            return ret;
+            return (TRepository)repo;
         }
 
-        public virtual TRepository NewRepository<TRepository>()
-            where TRepository : class, IAbstractRepository<IAbstractRepositoryContext>
-        {
-            var repoType = typeof(TRepository);
-
-            var ret = (TRepository)Activator.CreateInstance(repoType, args: this.WrapInArray())!;
-            return ret;
-        }
+        public abstract TRepository NewRepository<TRepository>()
+            where TRepository : IAbstractRepository<IAbstractRepositoryContext>;
 
 
         // ------- Dapper Wrappers -------

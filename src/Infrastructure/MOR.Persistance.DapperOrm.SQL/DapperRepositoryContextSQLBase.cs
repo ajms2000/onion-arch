@@ -5,7 +5,7 @@ using System.Data.Sql;
 
 namespace MOR.Persistance.DapperOrm.SQL
 {
-    public abstract class DapperRepositoryContextSQLBase : DapperRepositoryContextBase<SqlConnection, SqlTransaction>, IAbstractRepositoryContext
+    public abstract class DapperRepositoryContextSQLBase : DapperRepositoryContextBase<SqlConnection, SqlTransaction>
     {
         public DapperRepositoryContextSQLBase(string connectionString)
             : base(connectionString)
