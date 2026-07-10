@@ -77,11 +77,11 @@ namespace MOR.Persistance.DapperOrm.SQL
             Context = context;
         }
 
-        public void DoJob()
+        public async Task DoJob()
         {
-            //var repoUser = Context.GetRepository<ICoreUserRepo>();
+            var repoUser = Context.GetRepository<ICoreUserRepo>();
 
-            //repoUser.GetUserAsync().GetAwaitResult();
+            await repoUser.GetUserAsync();
         }
     }
 }
