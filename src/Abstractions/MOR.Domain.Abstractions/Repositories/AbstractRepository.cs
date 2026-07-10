@@ -9,6 +9,6 @@
         }
 
 
-        public TRepositoryContext RepoContext { get; private set; }
+        public abstract TRepositoryContext RepoContext { get; set; }
     }
 }
