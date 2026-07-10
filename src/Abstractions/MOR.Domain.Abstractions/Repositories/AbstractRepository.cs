@@ -5,10 +5,15 @@
     {
         public AbstractRepository(TRepositoryContext context)
         {
+            if (context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+
             RepoContext = context;
         }
 
 
-        public abstract TRepositoryContext RepoContext { get; set; }
+        public TRepositoryContext RepoContext { get; private set; }
     }
 }

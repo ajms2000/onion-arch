@@ -2,18 +2,18 @@
 
 namespace MOR.Persistance.DapperOrm.SQL
 {
-    public abstract class DapperRepositorySQLBase : DapperRepositorySQLBase<DapperRepositoryContextSQLBase>
+    public abstract class DapperRepositorySQLBase<TRepositoryContext> : AbstractRepository<TRepositoryContext>
+        where TRepositoryContext : DapperRepositoryContextSQLBase
     {
-        public DapperRepositorySQLBase(DapperRepositoryContextSQLBase context)
+        public DapperRepositorySQLBase(TRepositoryContext context)
             : base(context)
         {
         }
     }
 
-    public abstract class DapperRepositorySQLBase<TRepositoryContext> : AbstractRepository<TRepositoryContext>
-        where TRepositoryContext : DapperRepositoryContextSQLBase
+    public abstract class DapperRepositorySQLBase : DapperRepositorySQLBase<DapperRepositoryContextSQLBase>
     {
-        public DapperRepositorySQLBase(TRepositoryContext context)
+        public DapperRepositorySQLBase(DapperRepositoryContextSQLBase context)
             : base(context)
         {
         }

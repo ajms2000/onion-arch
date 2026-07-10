@@ -2,9 +2,8 @@
 
 namespace MOR.Persistance.DapperOrm.SQL
 {
-    // --------------- Example ---------------
-
     // in your domain
+
     public interface IDB2Context : IAbstractRepositoryContext
     {
     }
@@ -36,16 +35,12 @@ namespace MOR.Persistance.DapperOrm.SQL
         }
     }
 
-    public class CoreUserRepo : DapperRepositorySQLBase<CountingRepoContext>, ICoreUserRepo
+    public class CoreUserRepo : DapperRepositorySQLBase, ICoreUserRepo
     {
-        public CoreUserRepo(CountingRepoContext context)
+        public CoreUserRepo(DapperRepositoryContextSQLBase context)
             : base(context)
         {
         }
-
-        public override CountingRepoContext RepoContext { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-        ICoreContext IAbstractRepository<ICoreContext>.RepoContext => RepoContext;
 
         public async Task<List<string>> GetUserAsync()
         {

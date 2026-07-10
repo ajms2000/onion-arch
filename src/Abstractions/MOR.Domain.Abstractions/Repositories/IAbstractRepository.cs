@@ -3,6 +3,5 @@
     public interface IAbstractRepository<TRepositoryContext>
         where TRepositoryContext : IAbstractRepositoryContext
     {
-        TRepositoryContext RepoContext { get; }
     }
 }
