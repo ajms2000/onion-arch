@@ -52,6 +52,8 @@ namespace MOR.Persistance.DapperOrm
 
         // ------- Repository Factory -------
 
+        protected virtual IReadOnlyDictionary<Type, Type>? RepoMappings { get; }
+
         public virtual TRepository GetRepository<TRepository>()
             where TRepository : IAbstractRepository<IAbstractRepositoryContext>
         {
@@ -70,8 +72,29 @@ namespace MOR.Persistance.DapperOrm
             return (TRepository)repo;
         }
 
-        public abstract TRepository NewRepository<TRepository>()
-            where TRepository : IAbstractRepository<IAbstractRepositoryContext>;
+        public TRepository NewRepository<TRepository>()
+            where TRepository : IAbstractRepository<IAbstractRepositoryContext>
+        {
+            if (!RepoMappings.AnyAndNotNull())
+            {
+                throw new InvalidOperationException("No reposiory mappings defined.");
+            }
+
+            var repoDefType = typeof(TRepository);
+
+            if (!RepoMappings!.TryGetValue(repoDefType, out var repoImplType))
+            {
+                throw new InvalidOperationException($"No reposiory mapping found for $'{repoDefType.FullName}'.");
+            }
+
+            if (!repoDefType.IsAssignableFrom(repoImplType))
+            {
+                throw new InvalidOperationException($"Type '{repoImplType}' does not implement '{repoDefType}'.");
+            }
+
+            var ret = (TRepository)Activator.CreateInstance(repoImplType, args: [this])!;
+            return ret;
+        }
 
 
         // ------- Dapper Wrappers -------

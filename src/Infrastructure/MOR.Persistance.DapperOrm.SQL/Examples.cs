@@ -18,11 +18,12 @@ namespace MOR.Persistance.DapperOrm.SQL
 
     public interface ICoreUserRepo : ICoreRepo
     {
-        Task<List<string>> GetUserAsync();
+        Task<List<string>> GetUsersAsync();
     }
 
     public interface ICoreProductRepo : ICoreRepo
     {
+        Task<List<string>> GetProductsAsync();
     }
 
 
@@ -34,18 +35,11 @@ namespace MOR.Persistance.DapperOrm.SQL
         {
         }
 
-        public override TRepository NewRepository<TRepository>()
+        protected override IReadOnlyDictionary<Type, Type>? RepoMappings => new Dictionary<Type, Type>
         {
-            var repoType = typeof(TRepository);
-            var ret = default(DapperRepositorySQLBase);
-
-            if (repoType == typeof(ICoreUserRepo))
-            {
-                ret = new CoreUserRepo(this);
-            }
-
-            return (TRepository)(object)ret!;
-        }
+            { typeof(ICoreUserRepo), typeof(CoreUserRepo) },
+            { typeof(ICoreProductRepo), typeof(CoreProductRepo) }
+        };
     }
 
     public class CoreUserRepo : DapperRepositorySQLBase, ICoreUserRepo
@@ -55,7 +49,26 @@ namespace MOR.Persistance.DapperOrm.SQL
         {
         }
 
-        public async Task<List<string>> GetUserAsync()
+        public async Task<List<string>> GetUsersAsync()
+        {
+            var paramList = RepoContext.NewDbParams();
+
+            paramList.Int("id", 1);
+            paramList.Date("dt", DateTime.UtcNow);
+
+            var ret = await RepoContext.QueryAsync<string>("", param: paramList.ToProviderParams());
+            return ret;
+        }
+    }
+
+    public class CoreProductRepo : DapperRepositorySQLBase, ICoreProductRepo
+    {
+        public CoreProductRepo(DapperRepositoryContextSQLBase context)
+            : base(context)
+        {
+        }
+
+        public async Task<List<string>> GetProductsAsync()
         {
             var paramList = RepoContext.NewDbParams();
 
@@ -81,7 +94,7 @@ namespace MOR.Persistance.DapperOrm.SQL
         {
             var repoUser = Context.GetRepository<ICoreUserRepo>();
 
-            await repoUser.GetUserAsync();
+            await repoUser.GetUsersAsync();
         }
     }
 }
