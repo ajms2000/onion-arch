@@ -1,0 +1,42 @@
+<!--https://www.codeproject.com/Tips/1205223/Defining-Common-Assembly-Properties-for-Multi-proj-->
+<!--https://docs.microsoft.com/en-us/nuget/reference/msbuild-targets-->
+
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+	<PropertyGroup>
+		<_Version>10.0.0</_Version>
+		<InformationalVersion>$(_Version)</InformationalVersion>
+		<_Org>MOR</_Org>
+	</PropertyGroup>
+
+	<PropertyGroup>
+
+		<!--<Title>$(_Org) .NET Component</Title>-->
+		<Authors>$(_Org)</Authors>
+		<Owners>$(_Org)</Owners>
+		<Company>$(_Org)</Company>
+		<Copyright>© $(_Org)</Copyright>
+
+		<!--<Product>$(_Org) .NET Component</Product>-->
+		<ProductName>$(_Org) .NET Components</ProductName>
+		<Description>Common .NET library for $(_Org) projects.</Description>
+		<ProductVersion>$(_Version)</ProductVersion>
+		<FileVersion>$(_Version)</FileVersion>
+		<Version>$(_Version)</Version>
+
+		<RepositoryType>Git</RepositoryType>
+		<PackageOutputPath>$(ProjectDir)packages\$(Configuration)</PackageOutputPath>
+		<!--<PackageLicenseUrl>https://www.license.com</PackageLicenseUrl>-->
+		<PackageProjectUrl>https://github.com/mor/mor-framework</PackageProjectUrl>
+		<PackageIcon>App.png</PackageIcon>
+		<RepositoryUrl>https://github.com/mor/mor-framework</RepositoryUrl>
+		<PackageTags>.NET</PackageTags>
+		<PackageReleaseNotes>Release Notes</PackageReleaseNotes>
+
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="$(MSBuildThisFileDirectory)App.png" Pack="true" PackagePath="\" />
+	</ItemGroup>
+
+</Project>
