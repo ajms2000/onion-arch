@@ -8,7 +8,23 @@
 		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
 	</PropertyGroup>
 
-	<Import Project=".\MOR.SharedKernel.Data.proj" />
+	<Import Project="..\..\MOR.Product.proj" />
+
+	<PropertyGroup>
+		<IsPackable>true</IsPackable>
+		<Product>MOR.SharedKernel.Data</Product>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageId>$(Product)</PackageId>
+		<Title>$(Product)</Title>
+		<OutputType>Library</OutputType>
+	</PropertyGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\MOR.SharedKernel\MOR.SharedKernel.csproj" />

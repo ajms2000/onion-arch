@@ -8,7 +8,23 @@
 		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
 	</PropertyGroup>
 
-	<Import Project=".\MOR.SharedKernel.Data.Sql.proj" />
+	<Import Project="..\..\MOR.Product.proj" />
+
+	<PropertyGroup>
+		<IsPackable>true</IsPackable>
+		<Product>MOR.SharedKernel.Data.Sql</Product>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageId>$(Product)</PackageId>
+		<Title>$(Product)</Title>
+		<OutputType>Library</OutputType>
+	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Data.SqlClient" Version="7.0.1" />
