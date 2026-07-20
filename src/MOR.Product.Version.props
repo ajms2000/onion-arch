@@ -9,18 +9,6 @@
 
 	<PropertyGroup>
 		<!--Represents current product version (MAJOR.MINOR.PATCH) without pre-release tag.-->
-		<_VRVersion>$(_VRVersionBase).$(_VRVersionPatch)</_VRVersion>
-	</PropertyGroup>
-
-	<!--Regular-->
-	<PropertyGroup Condition="'$(_VRVersionPatch)' == '0'">
-		<!--Represents current product version (MAJOR.MINOR.PATCH) without pre-release tag.-->
-		<_VRVersionProduct>$(_VRVersionBase)</_VRVersionProduct>
-	</PropertyGroup>
-
-	<!--Patch-->
-	<PropertyGroup Condition="'$(_VRVersionPatch)' != '0'">
-		<!--Represents current product version (MAJOR.MINOR.PATCH) without pre-release tag.-->
 		<_VRVersionProduct>$(_VRVersionBase).$(_VRVersionPatch)</_VRVersionProduct>
 	</PropertyGroup>
 
@@ -30,15 +18,13 @@
 	<!--Regular delivery-->
 	<PropertyGroup Condition="'$(_VRVersionPreReleaseTag)' == ''">
 		<!--The release version including MAJOR.MINOR.PATCH.-->
-		<_VRVersionRelease>$(_VRVersion)</_VRVersionRelease>
+		<_VRVersionRelease>$(_VRVersionProduct)</_VRVersionRelease>
 	</PropertyGroup>
 
 	<!--Pre-release delivery-->
 	<PropertyGroup Condition="'$(_VRVersionPreReleaseTag)' != ''">
-		<!--Product version with pre-release tag-->
-		<_VRVersionProduct>$(_VRVersionProduct).$(_VRVersionPreReleaseTag)</_VRVersionProduct>
 		<!--The release version including MAJOR.MINOR.PATCH-{pre-release tag}-->
-		<_VRVersionRelease>$(_VRVersion).$(_VRVersionPreReleaseTag)</_VRVersionRelease>
+		<_VRVersionRelease>$(_VRVersionProduct)-$(_VRVersionPreReleaseTag)</_VRVersionRelease>
 	</PropertyGroup>
 
 

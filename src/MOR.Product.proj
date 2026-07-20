@@ -6,12 +6,12 @@
 	<Import Project="$(MSBuildThisFileDirectory)MOR.Product.Version.props" />
 
 	<PropertyGroup>
-		<InformationalVersion>$(_VRVersion)</InformationalVersion>
-		<_Org>MOR</_Org>
+		<IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
 	</PropertyGroup>
 
 	<PropertyGroup>
 
+		<_Org>MOR</_Org>
 		<!--<Title>$(_Org) .NET Component</Title>-->
 		<Authors>$(_Org)</Authors>
 		<Owners>$(_Org)</Owners>
@@ -21,9 +21,10 @@
 		<!--<Product>$(_Org) .NET Component</Product>-->
 		<ProductName>$(_Org) .NET Components</ProductName>
 		<Description>Common .NET library for $(_Org) projects.</Description>
-		<ProductVersion>$(_VRVersion)</ProductVersion>
-		<FileVersion>$(_VRVersion)</FileVersion>
-		<Version>$(_VRVersion)</Version>
+		<InformationalVersion>$(_VRVersionRelease)</InformationalVersion>
+		<ProductVersion>$(_VRVersionProduct)</ProductVersion>
+		<FileVersion>$(_VRVersionProduct)</FileVersion>
+		<Version>$(_VRVersionProduct)</Version>
 
 		<RepositoryType>Git</RepositoryType>
 		<PackageOutputPath>$(ProjectDir)..\..\..\packages</PackageOutputPath>
@@ -34,6 +35,10 @@
 		<PackageTags>.NET</PackageTags>
 		<PackageReleaseNotes>Release Notes</PackageReleaseNotes>
 
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+		<PackageVersion>$(_VRVersionRelease)</PackageVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
