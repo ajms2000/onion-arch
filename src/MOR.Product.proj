@@ -25,7 +25,7 @@
 		<Version>$(_Version)</Version>
 
 		<RepositoryType>Git</RepositoryType>
-		<PackageOutputPath>$(ProjectDir)packages\$(Configuration)</PackageOutputPath>
+		<PackageOutputPath>$(ProjectDir)..\..\..\packages</PackageOutputPath>
 		<!--<PackageLicenseUrl>https://www.license.com</PackageLicenseUrl>-->
 		<PackageProjectUrl>https://github.com/mor/mor-framework</PackageProjectUrl>
 		<PackageIcon>App.png</PackageIcon>
