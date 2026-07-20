@@ -5,7 +5,7 @@
 	<PropertyGroup>
 		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
 		<IsPackable>true</IsPackable>
-		<Product>MOR.SharedKernel</Product>
+		<Product>MOR.SharedKernel.Data.Sql</Product>
 	</PropertyGroup>
 
 	<PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">

@@ -19,6 +19,8 @@
   <Folder Name="/Solution Items/">
     <File Path="App.png" />
     <File Path="MOR.Product.proj" />
+    <File Path="SharedKernel/MOR.SharedKernel.Data.Sql/MOR.SharedKernel.Data.Sql.proj" />
+    <File Path="SharedKernel/MOR.SharedKernel.Data/MOR.SharedKernel.Data.proj" />
     <File Path="SharedKernel/MOR.SharedKernel/MOR.SharedKernel.proj" />
   </Folder>
 </Solution>

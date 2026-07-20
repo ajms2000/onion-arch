@@ -8,8 +8,10 @@
 		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
 	</PropertyGroup>
 
+	<Import Project=".\MOR.SharedKernel.Data.proj" />
+
 	<ItemGroup>
-	  <ProjectReference Include="..\MOR.SharedKernel\MOR.SharedKernel.csproj" />
+		<ProjectReference Include="..\MOR.SharedKernel\MOR.SharedKernel.csproj" />
 	</ItemGroup>
 
 </Project>
