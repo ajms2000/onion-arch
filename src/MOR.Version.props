@@ -7,9 +7,9 @@
 
 	<PropertyGroup>
 		<!--Base consumer version of BoardWorks. Apply only Major.Minor increments.-->
-		<_VRVersionBase>10.1</_VRVersionBase>
+		<_VRVersionBase>10.0</_VRVersionBase>
 		<!--Increment the patch/hotfix counter only when applicable. Otherwise keep 0 always.-->
-		<_VRVersionPatch>5</_VRVersionPatch>
+		<_VRVersionPatch>0</_VRVersionPatch>
 		<!--
 		Incase of pre-release specify rc/sptint/alpha/beta etc. Otherwise leave empty.
 		1. Release candidates e.g. RC1, RC2
