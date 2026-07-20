@@ -1,0 +1,21 @@
+<Project>
+
+	<!--
+	Please update the version as per the guidelines below.
+	A recommended practice is to update this before every sprint or release plan.
+	-->
+
+	<PropertyGroup>
+		<!--Base consumer version of BoardWorks. Apply only Major.Minor increments.-->
+		<_ProdVersionBase>10.0</_ProdVersionBase>
+		<!--Increment the patch/hotfix counter only when applicable. Otherwise keep 0 always.-->
+		<_ProdVersionPatch>0</_ProdVersionPatch>
+		<!--
+		Incase of pre-release specify rc/sptint/alpha/beta etc. Otherwise leave empty.
+		1. Release candidates e.g. RC1, RC2
+		2. Sprint e.g. SP1, SP2
+		-->
+		<_ProdVersionPreReleaseTag></_ProdVersionPreReleaseTag>
+	</PropertyGroup>
+
+</Project>

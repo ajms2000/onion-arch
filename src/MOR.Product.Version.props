@@ -1,0 +1,52 @@
+﻿<Project>
+
+	<!--https://semver.org/spec/v2.0.0-rc.1.html-->
+	<!--WARNING: DO NOT EDIT BELOW CONTENT!-->
+
+	<Import Project="$(MSBuildThisFileDirectory)MOR.Version.props" />
+
+	<!--****** GENERAL ******-->
+
+	<PropertyGroup>
+		<!--Represents current product version (MAJOR.MINOR.PATCH) without pre-release tag.-->
+		<_ProdVersion>$(_ProdVersionBase).$(_ProdVersionPatch)</_ProdVersion>
+	</PropertyGroup>
+
+	<!--Regular-->
+	<PropertyGroup Condition="'$(_ProdVersionPatch)' == '0'">
+		<!--Represents current product version (MAJOR.MINOR.PATCH) without pre-release tag.-->
+		<_ProdVersionProduct>$(_ProdVersionBase)</_ProdVersionProduct>
+	</PropertyGroup>
+
+	<!--Patch-->
+	<PropertyGroup Condition="'$(_ProdVersionPatch)' != '0'">
+		<!--Represents current product version (MAJOR.MINOR.PATCH) without pre-release tag.-->
+		<_ProdVersionProduct>$(_ProdVersionBase).$(_ProdVersionPatch)</_ProdVersionProduct>
+	</PropertyGroup>
+
+
+	<!--****** PRE-RELEASES ******-->
+
+	<!--Regular delivery-->
+	<PropertyGroup Condition="'$(_ProdVersionPreReleaseTag)' == ''">
+		<!--The release version including MAJOR.MINOR.PATCH.-->
+		<_ProdVersionRelease>$(_ProdVersion)</_ProdVersionRelease>
+	</PropertyGroup>
+
+	<!--Pre-release delivery-->
+	<PropertyGroup Condition="'$(_ProdVersionPreReleaseTag)' != ''">
+		<!--Product version with pre-release tag-->
+		<_ProdVersionProduct>$(_ProdVersionProduct).$(_ProdVersionPreReleaseTag)</_ProdVersionProduct>
+		<!--The release version including MAJOR.MINOR.PATCH-{pre-release tag}-->
+		<_ProdVersionRelease>$(_ProdVersion).$(_ProdVersionPreReleaseTag)</_ProdVersionRelease>
+	</PropertyGroup>
+
+
+	<!--****** PACKAGE ******-->
+
+	<PropertyGroup>
+		<!--This is used for naming build packages.-->
+		<_ProdVersionPkg>$(_ProdVersionProduct)</_ProdVersionPkg>
+	</PropertyGroup>
+
+</Project>
