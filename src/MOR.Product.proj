@@ -3,9 +3,10 @@
 
 <Project>
 
+	<Import Project="$(MSBuildThisFileDirectory)MOR.Product.Version.props" />
+
 	<PropertyGroup>
-		<_Version>10.0.0</_Version>
-		<InformationalVersion>$(_Version)</InformationalVersion>
+		<InformationalVersion>$(_VRVersion)</InformationalVersion>
 		<_Org>MOR</_Org>
 	</PropertyGroup>
 
@@ -20,9 +21,9 @@
 		<!--<Product>$(_Org) .NET Component</Product>-->
 		<ProductName>$(_Org) .NET Components</ProductName>
 		<Description>Common .NET library for $(_Org) projects.</Description>
-		<ProductVersion>$(_Version)</ProductVersion>
-		<FileVersion>$(_Version)</FileVersion>
-		<Version>$(_Version)</Version>
+		<ProductVersion>$(_VRVersion)</ProductVersion>
+		<FileVersion>$(_VRVersion)</FileVersion>
+		<Version>$(_VRVersion)</Version>
 
 		<RepositoryType>Git</RepositoryType>
 		<PackageOutputPath>$(ProjectDir)..\..\..\packages</PackageOutputPath>

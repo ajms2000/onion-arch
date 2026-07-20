@@ -9,36 +9,36 @@
 
 	<PropertyGroup>
 		<!--Represents current product version (MAJOR.MINOR.PATCH) without pre-release tag.-->
-		<_ProdVersion>$(_ProdVersionBase).$(_ProdVersionPatch)</_ProdVersion>
+		<_VRVersion>$(_VRVersionBase).$(_VRVersionPatch)</_VRVersion>
 	</PropertyGroup>
 
 	<!--Regular-->
-	<PropertyGroup Condition="'$(_ProdVersionPatch)' == '0'">
+	<PropertyGroup Condition="'$(_VRVersionPatch)' == '0'">
 		<!--Represents current product version (MAJOR.MINOR.PATCH) without pre-release tag.-->
-		<_ProdVersionProduct>$(_ProdVersionBase)</_ProdVersionProduct>
+		<_VRVersionProduct>$(_VRVersionBase)</_VRVersionProduct>
 	</PropertyGroup>
 
 	<!--Patch-->
-	<PropertyGroup Condition="'$(_ProdVersionPatch)' != '0'">
+	<PropertyGroup Condition="'$(_VRVersionPatch)' != '0'">
 		<!--Represents current product version (MAJOR.MINOR.PATCH) without pre-release tag.-->
-		<_ProdVersionProduct>$(_ProdVersionBase).$(_ProdVersionPatch)</_ProdVersionProduct>
+		<_VRVersionProduct>$(_VRVersionBase).$(_VRVersionPatch)</_VRVersionProduct>
 	</PropertyGroup>
 
 
 	<!--****** PRE-RELEASES ******-->
 
 	<!--Regular delivery-->
-	<PropertyGroup Condition="'$(_ProdVersionPreReleaseTag)' == ''">
+	<PropertyGroup Condition="'$(_VRVersionPreReleaseTag)' == ''">
 		<!--The release version including MAJOR.MINOR.PATCH.-->
-		<_ProdVersionRelease>$(_ProdVersion)</_ProdVersionRelease>
+		<_VRVersionRelease>$(_VRVersion)</_VRVersionRelease>
 	</PropertyGroup>
 
 	<!--Pre-release delivery-->
-	<PropertyGroup Condition="'$(_ProdVersionPreReleaseTag)' != ''">
+	<PropertyGroup Condition="'$(_VRVersionPreReleaseTag)' != ''">
 		<!--Product version with pre-release tag-->
-		<_ProdVersionProduct>$(_ProdVersionProduct).$(_ProdVersionPreReleaseTag)</_ProdVersionProduct>
+		<_VRVersionProduct>$(_VRVersionProduct).$(_VRVersionPreReleaseTag)</_VRVersionProduct>
 		<!--The release version including MAJOR.MINOR.PATCH-{pre-release tag}-->
-		<_ProdVersionRelease>$(_ProdVersion).$(_ProdVersionPreReleaseTag)</_ProdVersionRelease>
+		<_VRVersionRelease>$(_VRVersion).$(_VRVersionPreReleaseTag)</_VRVersionRelease>
 	</PropertyGroup>
 
 
@@ -46,7 +46,7 @@
 
 	<PropertyGroup>
 		<!--This is used for naming build packages.-->
-		<_ProdVersionPkg>$(_ProdVersionProduct)</_ProdVersionPkg>
+		<_VRVersionPkg>$(_VRVersionProduct)</_VRVersionPkg>
 	</PropertyGroup>
 
 </Project>

@@ -19,5 +19,7 @@
   <Folder Name="/Solution Items/">
     <File Path="App.png" />
     <File Path="MOR.Product.proj" />
+    <File Path="MOR.Product.Version.props" />
+    <File Path="MOR.Version.props" />
   </Folder>
 </Solution>
