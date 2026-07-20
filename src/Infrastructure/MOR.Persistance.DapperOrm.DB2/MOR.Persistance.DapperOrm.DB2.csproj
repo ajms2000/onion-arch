@@ -8,7 +8,7 @@
 		<NoWarn>MSB3270</NoWarn>
 	</PropertyGroup>
 
-	<Import Project="..\..\MOR.Product.proj" />
+	<Import Project="..\..\MOR.Product.props" />
 
 	<PropertyGroup>
 		<IsPackable>true</IsPackable>
