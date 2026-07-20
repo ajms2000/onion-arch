@@ -7,6 +7,24 @@
 		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
 	</PropertyGroup>
 
+	<Import Project="..\..\MOR.Product.proj" />
+
+	<PropertyGroup>
+		<IsPackable>true</IsPackable>
+		<Product>MOR.Persistance.DapperOrm.SQL</Product>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageId>$(Product)</PackageId>
+		<Title>$(Product)</Title>
+		<OutputType>Library</OutputType>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<PackageReference Include="Dapper" Version="2.1.79" />
 	</ItemGroup>

@@ -8,12 +8,26 @@
 		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<ProjectReference Include="..\MOR.Domain.Abstractions\MOR.Domain.Abstractions.csproj" />
-	</ItemGroup>
+	<Import Project="..\..\MOR.Product.proj" />
+
+	<PropertyGroup>
+		<IsPackable>true</IsPackable>
+		<Product>MOR.App.Abstractions</Product>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageId>$(Product)</PackageId>
+		<Title>$(Product)</Title>
+		<OutputType>Library</OutputType>
+	</PropertyGroup>
 
 	<ItemGroup>
-	  <Folder Include="Jobs\" />
+		<ProjectReference Include="..\MOR.Domain.Abstractions\MOR.Domain.Abstractions.csproj" />
 	</ItemGroup>
 
 </Project>
